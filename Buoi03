@@ -1,0 +1,47 @@
+***Transactions***
+
+Transaction (Giao dịch) là một tập hợp các thao tác cần được thực hiện một cách nguyên tử: hoặc tất cả đều thành công, hoặc không có gì được thực hiện (rollback). Trong Spring, Transaction Management giúp đảm bảo tính toàn vẹn dữ liệu khi làm việc với cơ sở dữ liệu.
+
+1.Các Đặc Điểm Chính của Transaction
+ -Atomicity (Nguyên tử) – Tất cả hoặc không có gì.
+ -Consistency (Nhất quán) – Hệ thống luôn ở trạng thái hợp lệ.
+ -Isolation (Cô lập) – Các giao dịch không ảnh hưởng lẫn nhau.
+ -Durability (Bền vững) – Khi commit, dữ liệu sẽ được lưu vĩnh viễn.
+2. Các Loại Transaction Management trong Spring
+ -Programmatic Transactions (Lập trình)
+ -Declarative Transactions (Khai báo)
+
+ 
+
+***Trigger***
+
+Trigger là một đối tượng trong cơ sở dữ liệu (Database) được kích hoạt tự động khi có một sự kiện cụ thể xảy ra trên một bảng hoặc một view.
+
+ -Trigger là một cơ chế tự động trong cơ sở dữ liệu, kích hoạt khi có INSERT, UPDATE, DELETE.
+ -Có 3 loại chính: BEFORE, AFTER, INSTEAD OF.
+ -Ứng dụng phổ biến: kiểm tra dữ liệu, tạo log, đảm bảo toàn vẹn dữ liệu.
+ -Trigger có thể gây chậm hiệu suất nếu sử dụng quá nhiều.
+ -Trong Spring Boot, có thể mô phỏng trigger bằng Hibernate Entity Listeners.
+
+
+
+***Stored Procedure***
+
+Stored Procedure (SP) là một tập hợp các câu lệnh SQL được lưu trữ sẵn trong CSDL và có thể được thực thi nhiều lần. Nó giúp tăng hiệu suất, bảo mật, và giảm thiểu lỗi trong truy vấn dữ liệu.
+
+1. Ưu điểm:
+ -Tăng hiệu suất – Giảm thời gian thực thi do đã được biên dịch sẵn.
+ -Bảo mật cao hơn – Hạn chế quyền truy cập trực tiếp vào bảng dữ liệu.
+ -Tái sử dụng dễ dàng – Có thể được gọi từ nhiều ứng dụng khác nhau.
+ -Giảm tải cho ứng dụng – Giúp ứng dụng không phải xử lý logic phức tạp.
+
+2. Nhược điểm:
+ -Khó bảo trì – Nếu quá nhiều Stored Procedure, việc quản lý code có thể trở nên phức tạp.
+ -Không linh hoạt bằng ORM – Khi sử dụng Spring Boot, Hibernate/JPA có thể dễ dàng thay đổi logic hơn Stored Procedure.
+ -Có thể gây vấn đề về hiệu suất – Nếu không được tối ưu, Stored Procedure có thể làm chậm database thay vì tăng tốc.
+
+=> chung quy:
+ -Stored Procedure giúp tối ưu hóa truy vấn, bảo mật dữ liệu, và cải thiện hiệu suất.
+ -Có thể nhận tham số đầu vào (IN), đầu ra (OUT), hoặc cả hai (INOUT).
+ -Có thể sử dụng trong nhiều hệ quản trị CSDL khác nhau như MySQL, SQL Server, PostgreSQL, Oracle.
+ -Spring Boot hỗ trợ gọi Stored Procedure bằng @Procedure hoặc EntityManager.
