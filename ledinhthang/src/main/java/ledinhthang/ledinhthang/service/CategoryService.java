@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.service;
+package ledinhthang.ledinhthang.service;
 
 import ledinhthang.ledinhthang.entity.Category;
 import ledinhthang.ledinhthang.repository.CategoryRepository;
@@ -13,22 +13,18 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // Lấy danh sách tất cả các danh mục
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    // Lấy danh mục theo ID
     public Category getCategoryById(int id) {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    // Thêm danh mục mới
     public Category addCategory(Category category) {
         return categoryRepository.save(category);
     }
 
-    // Cập nhật danh mục
     public Category updateCategory(int id, Category newCategory) {
         return categoryRepository.findById(id).map(category -> {
             category.setName(newCategory.getName());
@@ -37,7 +33,6 @@ public class CategoryService {
         }).orElse(null);
     }
 
-    // Xóa danh mục theo ID
     public boolean deleteCategoryById(int id) {
         if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);

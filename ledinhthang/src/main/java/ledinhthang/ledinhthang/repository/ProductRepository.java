@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.repository;
+package ledinhthang.ledinhthang.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

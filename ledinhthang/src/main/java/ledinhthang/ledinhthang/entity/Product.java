@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.entity;
+package ledinhthang.ledinhthang.entity;
 
 import jakarta.persistence.*;
 

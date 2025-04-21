@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.controller;
+package ledinhthang.ledinhthang.controller;
 
 import ledinhthang.ledinhthang.entity.Product;
 import ledinhthang.ledinhthang.service.ProductService;

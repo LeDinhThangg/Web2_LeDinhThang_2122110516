@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.entity;
+package ledinhthang.ledinhthang.entity;
 
 import jakarta.persistence.*;
 
@@ -29,7 +29,8 @@ public class User {
     private String password;
 
     // Constructor không tham số
-    public User() {}
+    public User() {
+    }
 
     // Constructor đầy đủ tham số
     public User(String name, int role, String phone, String address, String email, String password) {

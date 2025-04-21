@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.service;
+package ledinhthang.ledinhthang.service;
 
 import ledinhthang.ledinhthang.entity.Payment;
 import ledinhthang.ledinhthang.repository.PaymentRepository;
@@ -10,21 +10,20 @@ import java.util.List;
 
 @Service
 public class PaymentService {
-   
+
     @Autowired
     private PaymentRepository paymentRepository;
 
     public List<Payment> getPaymentsByOrderId(int orderId) {
         return paymentRepository.findByOrder_OrderId(orderId);
     }
-    
+
     // Lấy tất cả thông tin thanh toán
     public List<Payment> getAllPayments() {
         return paymentRepository.findAll();
     }
 
     // Lấy thông tin thanh toán theo orderId
- 
 
     // Thêm thanh toán mới
     public Payment addPayment(Payment payment) {

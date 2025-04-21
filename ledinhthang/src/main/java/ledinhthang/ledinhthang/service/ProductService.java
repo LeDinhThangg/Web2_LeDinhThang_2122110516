@@ -1,4 +1,4 @@
-package  ledinhthang.ledinhthang.service;
+package ledinhthang.ledinhthang.service;
 
 import ledinhthang.ledinhthang.entity.Brand;
 import ledinhthang.ledinhthang.entity.Category;
@@ -21,11 +21,10 @@ public class ProductService {
     @Autowired
     private BrandRepository brandRepository;
 
-    
-       public List<Product> getProductsByBrand(Brand brand) {
+    public List<Product> getProductsByBrand(Brand brand) {
         return productRepository.findByBrand(brand);
     }
-    
+
     public List<Product> getProductsByCategoryId(int categoryId) {
         Category category = categoryRepository.findById(categoryId).orElse(null);
         if (category == null) {
@@ -33,6 +32,7 @@ public class ProductService {
         }
         return productRepository.findByCategory(category);
     }
+
     // Lấy tất cả sản phẩm
     public List<Product> getAllProducts() {
         return productRepository.findAll();
@@ -62,7 +62,7 @@ public class ProductService {
             product.setImage(newProduct.getImage());
             product.setPrice(newProduct.getPrice());
             product.setDiscount(newProduct.getDiscount());
-    
+
             // Thiết lập Brand nếu tồn tại
             if (newProduct.getBrand() != null && newProduct.getBrand().getBrandId() > 0) {
                 Brand brand = brandRepository.findById(newProduct.getBrand().getBrandId()).orElse(null);
@@ -70,20 +70,19 @@ public class ProductService {
             } else {
                 product.setBrand(null); // Bỏ liên kết nếu không có Brand
             }
-    
+
             // Thiết lập Category nếu tồn tại
             if (newProduct.getCategory() != null && newProduct.getCategory().getCategoryId() > 0) {
                 Category category = categoryRepository.findById(newProduct.getCategory().getCategoryId()).orElse(null);
+
                 product.setCategory(category);
             } else {
                 product.setCategory(null); // Bỏ liên kết nếu không có Category
             }
-    
+
             return productRepository.save(product);
         }).orElse(null);
     }
-    
-
 
     // Xóa sản phẩm
     public boolean deleteProductById(int id) {

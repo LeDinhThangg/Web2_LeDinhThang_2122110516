@@ -1,6 +1,7 @@
-package  ledinhthang.ledinhthang.entity;
+package ledinhthang.ledinhthang.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,20 +16,18 @@ public class Category {
 
     private int parentId;
 
-  @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-private List<Product> products = new ArrayList<>();
+   
 
-    // Constructor không tham số
+  
     public Category() {}
 
-    // Constructor đầy đủ tham số
+ 
     public Category(int categoryId, String name, int parentId) {
         this.categoryId = categoryId;
         this.name = name;
         this.parentId = parentId;
     }
 
-    // Getter và Setter
     public int getCategoryId() {
         return categoryId;
     }
@@ -53,15 +52,8 @@ private List<Product> products = new ArrayList<>();
         this.parentId = parentId;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
+ 
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    // Phương thức toString
     @Override
     public String toString() {
         return "Category{" +

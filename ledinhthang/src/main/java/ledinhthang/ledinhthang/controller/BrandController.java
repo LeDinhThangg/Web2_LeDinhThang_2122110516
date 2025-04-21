@@ -1,9 +1,9 @@
-package  ledinhthang.ledinhthang.controller;
+package ledinhthang.ledinhthang.controller;
 
 import ledinhthang.ledinhthang.entity.Brand;
 import ledinhthang.ledinhthang.service.BrandService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,36 +11,54 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/brands")
 public class BrandController {
+
     @Autowired
     private BrandService brandService;
 
-    // Lấy tất cả thương hiệu
+    // Lấy tất cả brand
     @GetMapping
-    public List<Brand> getAllBrands() {
-        return brandService.getAllBrands();
+    public ResponseEntity<List<Brand>> getAllBrands() {
+        List<Brand> brands = brandService.getAllBrands();
+        if (brands.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(brands);
     }
 
-    // Lấy thương hiệu theo ID
+    // Lấy brand theo ID
     @GetMapping("/{id}")
-    public Brand getBrandById(@PathVariable int id) {
-        return brandService.getBrandById(id);
+    public ResponseEntity<Brand> getBrandById(@PathVariable int id) {
+        Brand brand = brandService.getBrandById(id);
+        if (brand == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(brand);
     }
 
-    // Thêm thương hiệu mới
+    // Thêm brand mới
     @PostMapping
-    public Brand addBrand(@RequestBody Brand brand) {
-        return brandService.addBrand(brand);
+    public ResponseEntity<Brand> addBrand(@RequestBody Brand brand) {
+        Brand savedBrand = brandService.addBrand(brand);
+        return ResponseEntity.ok(savedBrand);
     }
 
-    // Cập nhật thương hiệu
+    // Cập nhật brand
     @PutMapping("/{id}")
-    public Brand updateBrand(@PathVariable int id, @RequestBody Brand newBrand) {
-        return brandService.updateBrand(id, newBrand);
+    public ResponseEntity<Brand> updateBrand(@PathVariable int id, @RequestBody Brand newBrand) {
+        Brand updatedBrand = brandService.updateBrand(id, newBrand);
+        if (updatedBrand == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedBrand);
     }
 
-    // Xóa thương hiệu theo ID
+    // Xóa brand
     @DeleteMapping("/{id}")
-    public boolean deleteBrandById(@PathVariable int id) {
-        return brandService.deleteBrandById(id);
+    public ResponseEntity<Void> deleteBrandById(@PathVariable int id) {
+        boolean isDeleted = brandService.deleteBrandById(id);
+        if (!isDeleted) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 }
