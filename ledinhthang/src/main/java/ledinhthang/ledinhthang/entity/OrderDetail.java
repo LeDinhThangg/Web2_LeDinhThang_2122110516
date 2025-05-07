@@ -1,22 +1,24 @@
-package  ledinhthang.ledinhthang.entity;
+package ledinhthang.ledinhthang.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "order_details")
 public class OrderDetail {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonBackReference
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "productId", nullable = false)
     private Product product;
-    
 
     private Float price;
     private Integer qty;

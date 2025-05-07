@@ -1,5 +1,6 @@
-package  ledinhthang.ledinhthang.entity;
+package ledinhthang.ledinhthang.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.util.Date;
@@ -27,10 +28,12 @@ public class Order {
     private Date date;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<OrderDetail> orderDetails; // Quan hệ với bảng OrderDetail
 
     // Constructors
-    public Order() {}
+    public Order() {
+    }
 
     public Order(User user, float totalPrice, Date date) {
         this.user = user;
